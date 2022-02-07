@@ -1,0 +1,6 @@
+Pages\PageObjects.class
+tests\BaseTest.class
+Pages\BasePage.class
+tests\HomePageTest.class
+tests\SauceDemoTest.class
+Pages\ContactUsFormPage.class
