@@ -1,55 +1,47 @@
 package Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 public class BlousePage extends BasePage {
 
     private final WebDriverWait wait;
+    private WebDriver driver;
 
     public BlousePage(WebDriver driver) {
         super(driver);
+        this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @FindBy(xpath = "//*[@class='product-container']")
-    List<WebElement> allDataAboutSearchingBlouse;
-    @FindBy(xpath = "//*[@class='right-block']//*[@title='Blouse']")
-    WebElement titleOfProduct;
-    @FindBy(xpath = "//*[@class='right-block']//*[contains(text(),'$27.00')]")
-    WebElement priceOfProduct;
-    @FindBy(xpath ="//*[@class='top-pagination-content clearfix']//*[contains(text(),'1 of 1')]")
-    WebElement findOneElementEqualsToInputValueInSearchBox;
-
-    public void shouldReturnValidDataAboutBlouseAfterSearching() {
-        List<String> infoAboutBlouse = allDataAboutSearchingBlouse.stream()
-                .map(e -> e.getText().trim().toLowerCase())
-                .filter(e -> e.contains("b"))
-                .collect(Collectors.toList());
-        for (String allInfo : infoAboutBlouse) {
-            System.out.println(allInfo);
-        }
+    public boolean ifTitleOfDisplayedProductIsCorrect(String titleOfProduct) {
+        return isWebElementDisplayed(driver.findElement(titleOfSearchedProduct(titleOfProduct)));
+    }
+    public By titleOfSearchedProduct(String title) {
+        return (By.xpath("//*[@class='right-block']//*[@title='" + title + "']"));
     }
 
-    public boolean shouldReturnCorrectTitleOfProduct() {
-        return shouldReturnCorrectDataOfProduct(titleOfProduct);
+    public boolean ifPriceOfDisplayedProductIsCorrect(String productPrice) {
+        return isWebElementDisplayed(driver.findElement(priceOfSearchedProduct(productPrice)));
     }
-    public boolean shouldReturnCorrectPriceOfProduct() {
-        return shouldReturnCorrectDataOfProduct(priceOfProduct);
-    }
-    public boolean shouldReturnOneElementAfterSearching() {
-        return shouldReturnCorrectDataOfProduct(findOneElementEqualsToInputValueInSearchBox);
+    public By priceOfSearchedProduct(String price) {
+        return (By.xpath("//*[@class='right-block']//*[contains(text(),'" + price + "')]"));
     }
 
-    public boolean shouldReturnCorrectDataOfProduct(WebElement box) {
+    public boolean ifOneElementIsDisplayedAfterSearching(String numberOfSearchResults) {
+        return isWebElementDisplayed(driver.findElement(findOneElementEqualsToInputValueInSearchBox(numberOfSearchResults)));
+    }
+    public By findOneElementEqualsToInputValueInSearchBox(String oneElement) {
+        return (By.xpath("//*[@class='top-pagination-content clearfix']//*[contains(text(),'" + oneElement + "')]"));
+    }
+
+    public boolean isWebElementDisplayed(WebElement box) {
         wait.until(ExpectedConditions.visibilityOf(box));
         boolean isDisplayed = false;
         try {

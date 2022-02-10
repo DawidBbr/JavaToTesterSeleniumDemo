@@ -26,12 +26,12 @@ public class PageObjects extends BasePage {
     @FindBy(xpath = "//*[@class='login']")
     WebElement goToSignIn;
 
-    public void shouldReturnListOfProductForWomen() {
+    public void clickOnWomenCategoryInHomePage() {
         wait.until(ExpectedConditions.visibilityOf(productFromWomenCategory));
         productFromWomenCategory.click();
     }
-    public void shouldReturnBlouseAfterInputValueInSearchingBox() {
-        inputValueInSearchingBox.sendKeys("blouse");
+    public void inputValueAndClickToSearch(String keysToSend) {
+        inputValueInSearchingBox.sendKeys(keysToSend);
         clickInSearchSignAfterInputValueInSearchBox.click();
     }
     public void clickOnSignInElementAndGoToTarget() {

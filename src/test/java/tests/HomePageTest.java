@@ -38,17 +38,16 @@ public class HomePageTest extends BaseTest {
 
     @Test
     public void shouldReturnListProductAfterClickWomanCategories() {
-        productFromWomenCategory.shouldReturnListOfProductForWomen();
+        productFromWomenCategory.clickOnWomenCategoryInHomePage();
         listOfProductForWomen.getProductForWomen();
     }
 
     @Test
     public void shouldReturnSearchingBlouseWithValidData() {
-        inputValueInSearchingBox.shouldReturnBlouseAfterInputValueInSearchingBox();
-        blousePage.shouldReturnValidDataAboutBlouseAfterSearching();
-        Assertions.assertThat(blousePage.shouldReturnCorrectTitleOfProduct()).isTrue();
-        Assertions.assertThat(blousePage.shouldReturnCorrectPriceOfProduct()).isTrue();
-        Assertions.assertThat(blousePage.shouldReturnOneElementAfterSearching()).isTrue();
+        inputValueInSearchingBox.inputValueAndClickToSearch("blouse");
+        Assertions.assertThat(blousePage.ifTitleOfDisplayedProductIsCorrect("Blouse")).isTrue();
+        Assertions.assertThat(blousePage.ifPriceOfDisplayedProductIsCorrect("$27.00")).isTrue();
+        Assertions.assertThat(blousePage.ifOneElementIsDisplayedAfterSearching("1 of 1")).isTrue();
     }
 
     @Test
