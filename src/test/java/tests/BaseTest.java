@@ -1,23 +1,28 @@
 package tests;
 
+import Pages.WomenCategoryPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class BaseTest {
     protected static final String BASE_URL = "http://automationpractice.pl/index.php";
+    protected WebDriver driver;
+    protected WomenCategoryPage womenCategoryPage;
 
-    protected WebDriver driver;   // communication with the browser
-
-    @BeforeAll  // run before all tests
-    public static void setupClass() {
+    @BeforeEach
+    public void setupTest() {
         WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.get(BASE_URL);
+        womenCategoryPage = new WomenCategoryPage(driver);
     }
 
-    @AfterEach    // run after each test
-    public void teardown() {
+    @AfterEach
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }

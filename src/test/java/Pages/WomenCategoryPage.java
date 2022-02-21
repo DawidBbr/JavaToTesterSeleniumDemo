@@ -1,37 +1,64 @@
 package Pages;
 
-import org.assertj.core.api.Assertions;
+import Selectors.WebElementSelectorsPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-import java.util.List;
-import java.util.stream.Collectors;
+import static utils.Interactions.*;
 
-public class WomenCategoryPage extends BasePage {
-
-    private final WebDriverWait wait;
+public class WomenCategoryPage extends BasePage implements WebElementSelectorsPage {
 
     public WomenCategoryPage(WebDriver driver) {
         super(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @FindBy(xpath = "//div[@class='right-block']//span[@class='price product-price']")
-    List<WebElement> listOfProductForWomen;
+    public void clickOnWomenButton() {
+        click(driver, womenButtonSelector);
+    }
 
-    public void getProductForWomen() {
-        List<Double> listOfPricesAllProduct = listOfProductForWomen.stream()
-                .map(e -> e.getText().trim())
-                .filter(e -> e.contains("$"))
-                .map(e -> e.replace("$", " "))
-                .map(Double::parseDouble)
-                .collect(Collectors.toList());
-        for (Double pricesOfProducts : listOfPricesAllProduct) {
-            Assertions.assertThat(pricesOfProducts).isGreaterThan(0);
-        }
-        for (Double list : listOfPricesAllProduct) System.out.println(list);
+    public void clickOnDressesCategoryCheckBox() {
+        click(driver, dressesCategoryCheckBoxSelector);
+    }
+
+    public void clickOnMediumSizeCheckBox() {
+        click(driver, mediumSizeCheckBoxSelector);
+    }
+
+    public void clickOnOrangeColorCategory() {
+        click(driver, orangeColorCategorySelector);
+    }
+
+    public void clickAndMoveSliderOfPriceProducts() {
+        moveSliderFromOnePlaceToDestination(driver, sliderHandleSelector);
+
+    }
+
+    public void clickInSortByElementAndClickInSuggestedOptionFromDropDown() {
+        clickAfterClick(driver, sortProductsBySelector, lowestFirstElementFromDropDownOfSortProductsBySelector);
+    }
+
+    public void clickInTheCheapestProductFromSearchResults() {
+        click(driver, cheapestFilteredProductFromSearchResultsSelector);
+    }
+
+    public void clickInPlusToAddOneMoreDressToYourShopping() {
+        click(driver, addOneMoreProductSelector);
+    }
+
+    public void clickInSizeBoxOfProductAndChooseSizeM() {
+        clickAfterClick(driver, sizeBoxOfProductSelector, mediumSizeOfProductFromDropDownSizeSelector);
+    }
+
+    public void clickOnPhotoOfProductAfterCloseEnlargedPhoto() {
+        clickAfterClick(driver, photoOfProductSelector, closeTheEnlargedPhotoOfProductSelector);
+        isElementDisplayed(driver, photoOfProductSelector);
+    }
+
+    public void clickOnAddToCartButtonAndBackToShopping() {
+        clickAfterClick(driver, addProductToCartSelector, continueShoppingAfterBuyProductSelector);
+    }
+
+    public void clickOnButtonCheckOutMyShoppingFromDropDrownCartProduct() {
+        hoverOverAndClickOnDropDownElement(driver, viewMyShoppingCartSelector, buttonCheckOutMyShoppingSelector);
     }
 }
+
