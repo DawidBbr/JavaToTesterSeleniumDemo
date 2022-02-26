@@ -96,4 +96,29 @@ public class HomePageTest extends BaseTest {
         actionsPage.clickInYesButtonToDeleteOneAction();
         assertionsPage.assertActionWasDeleted();
 }
+    @Test
+    public void shouldReturnSuccessfulCreationOfActionAssertionElementDisplayedAndDeleteThatAction() {
+        loginPage.sendLoginDataToLogIn();
+        loginPage.clickOnSignInButton();
+        assertionsPage.assertTopMenuActionsButtonIsDisplayed();
+        actionsPage.clickOnTopMenuActionsOfDrapla();
+        assertionsPage.assertAddNewActionsButtonIsDisplayed();
+        actionsPage.clickOnDeleteAllActionsIfAreDisplayed();
+        assertionsPage.assertAddNewActionsButtonIsDisplayed();
+        actionsPage.clickOnAddNewActionsButton();
+        assertionsPage.assertActionNameFieldIsDisplayed();
+        assertionActionPage.inputValidDataOfActionAssertion();
+        actionsPage.clickOnNextActionStepButton();
+        assertionActionPage.clickOnAssertionTypeFromDropDown();
+        actionsPage.clickOnNextActionStepButton();
+        assertionActionPage.clickOnProvideWayToLocateSelectorFromWebsite();
+        actionsPage.clickOnNextActionStepButton();
+        assertionActionPage.inputValidDataOfSelector();
+        actionsPage.clickOnNextActionStepButton();
+        actionsPage.clickOnButtonFinishCreateAction();
+        assertionsPage.assertListOfActionsIsDisplayed();
+        actionsPage.clickOnDeleteAction();
+        actionsPage.clickInYesButtonToDeleteOneAction();
+        assertionsPage.assertActionWasDeleted();
+    }
 }

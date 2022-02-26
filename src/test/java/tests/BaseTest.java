@@ -6,7 +6,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import utils.FillInput;
 
 public class BaseTest {
     protected static final String BASE_URL = "https://app.drapla.com/login";
@@ -18,6 +17,7 @@ public class BaseTest {
     protected ClickOnElementActionPage clickOnElementActionPage;
     protected FillInputActionPage fillInputActionPage;
     protected ManualActivityActionPage manualActivityActionPage;
+    protected AssertionActionPage assertionActionPage;
 
     @BeforeEach
     public void setupTest() {
@@ -32,6 +32,7 @@ public class BaseTest {
         clickOnElementActionPage = new ClickOnElementActionPage(driver);
         fillInputActionPage = new FillInputActionPage(driver);
         manualActivityActionPage = new ManualActivityActionPage(driver);
+        assertionActionPage = new AssertionActionPage(driver);
     }
 
     @AfterEach
