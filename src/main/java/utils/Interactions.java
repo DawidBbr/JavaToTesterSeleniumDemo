@@ -34,21 +34,18 @@ public class Interactions {
         driver.findElement(selector2).click();
     }
 
-    public static boolean isElementDisplayed(WebDriver driver, By selector)
-    {
-        boolean elementPresent=false;
+    public static boolean isElementDisplayed(WebDriver driver, By selector) {
+        boolean elementPresent = false;
         try {
-            if(driver.findElement(selector).isDisplayed())
-            {
-                elementPresent=true;
+            if (driver.findElement(selector).isDisplayed()) {
+                elementPresent = true;
             }
-        }
-        catch(NoSuchElementException e)
-        {
-            System.out.println("Element is not present " +e);
+        } catch (NoSuchElementException e) {
+            System.out.println("Element is not present " + e);
         }
         return elementPresent;
     }
+
     public static void hoverOverAndClickOnDropDownElement(WebDriver driver, By fieldToExpandSelector, By elementFromDropDownSelector) {
         awaitUntilElementDisplayed(driver, fieldToExpandSelector);
         Actions actions = new Actions(driver);
@@ -56,9 +53,26 @@ public class Interactions {
         awaitUntilElementDisplayed(driver, elementFromDropDownSelector);
         driver.findElement(elementFromDropDownSelector).click();
     }
+
     public static void moveSliderFromOnePlaceToDestination(WebDriver driver, By selector) {
         awaitUntilElementDisplayed(driver, selector);
         Actions slider = new Actions(driver);
-        slider.moveToElement(driver.findElement(selector)).clickAndHold().moveByOffset(0,50).release().perform();
+        slider.moveToElement(driver.findElement(selector)).clickAndHold().moveByOffset(0, 50).release().perform();
     }
-}
+
+    public static void ifActionsExistCLickOnTheMainCheckBox(WebDriver driver, By rowDataNames, By theMainCheckBoxSelector,
+                                                            By buttonDelete, By buttonYesOrNo) {
+        if (driver.findElements(rowDataNames).size() > 0) {
+            driver.findElement(theMainCheckBoxSelector).click();
+            awaitUntilElementDisplayed(driver, buttonDelete);
+            driver.findElement(buttonDelete).click();
+            awaitUntilElementDisplayed(driver, buttonYesOrNo);
+            driver.findElement(buttonYesOrNo).click();
+        }
+    }
+        public static void ifActionsExistAssertThem(WebDriver driver, By rowDataNames){
+            if (driver.findElements(rowDataNames).size() > 0) {
+                awaitUntilElementDisplayed(driver, rowDataNames);
+            }
+        }
+    }

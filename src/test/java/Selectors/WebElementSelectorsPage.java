@@ -1,23 +1,31 @@
 package Selectors;
 
+import enums.ActionType;
 import org.openqa.selenium.By;
 
 public interface WebElementSelectorsPage {
-    By womenButtonSelector = By.xpath("//*[@id='block_top_menu']//*[text()='Women']");
-    By dressesCategoryCheckBoxSelector = By.xpath("//*[@id='uniform-layered_category_8']");
-    By mediumSizeCheckBoxSelector = By.xpath("//*[@id='uniform-layered_id_attribute_group_2']");
-    By orangeColorCategorySelector = By.xpath("//*[@id='layered_id_attribute_group_13']");
-    By sliderHandleSelector = By.xpath("//*[@class='layered_slider_container']");
-    By sortProductsBySelector = By.xpath("//*[@id='uniform-selectProductSort']");
-    By lowestFirstElementFromDropDownOfSortProductsBySelector = By.xpath("//*[contains(text(),'Price: Lowest first')]");
-    By cheapestFilteredProductFromSearchResultsSelector = By.xpath("//*[contains(text(),'Printed Dress')]");
-    By addOneMoreProductSelector = By.xpath("//*[@class='btn btn-default button-plus product_quantity_up']");
-    By sizeBoxOfProductSelector = By.id("uniform-group_1");
-    By mediumSizeOfProductFromDropDownSizeSelector = By.xpath("//*[@id='group_1']//*[contains(text(),'M')]");
-    By photoOfProductSelector = By.id("bigpic");
-    By closeTheEnlargedPhotoOfProductSelector = By.xpath("//*[@class='fancybox-item fancybox-close']");
-    By addProductToCartSelector = By.xpath("//*[contains(text(),'Add to cart')]");
-    By continueShoppingAfterBuyProductSelector = By.xpath("//*[@class='icon-chevron-left left']");
-    By viewMyShoppingCartSelector = By.xpath("//*[@title='View my shopping cart']");
-    By buttonCheckOutMyShoppingSelector = By.xpath("//*[contains(text(),'Check out')]");
+    By emailFieldInLoginPageDraplaSelector = By.id("email");
+    By passwordFieldInLoginPageDraplaSelector = By.id("password");
+    By signInButtonInLoginPageDraplaSelector = By.id("submit");
+    By topMenuActionsSelector = By.id("top-menu-actions");
+    By rowDataNamesSelector = By.xpath("//*[contains(@id,'row-data-name')]");
+    By theMainCheckBoxForAllActionsSelector = By.xpath("//*[@class='th-checkboxes']//*[contains(@role,'checkbox')]");
+    By deleteButtonInActions = By.xpath("//*[@label='Delete']");
+    By addNewActionsButtonSelector = By.xpath("//*[@label='Add']");
+    By actionNameFieldSelector = By.id("action-name");
+    By actionTypeFieldSelector = By.id("action-type");
+    By nextActionStepButtonSelector = By.xpath("//*[contains(text(),'Next')]");
+    By fieldToInputValueOfActionSelector = By.xpath("//*[@ng-trim='false']");
+    By finishActionStepButtonSelector = By.xpath("//*[contains(text(),'Finish')]");
+    By deleteOneActionButtonSelector = By.xpath("//*[contains(@id,'table-delete-button')]");
+    By successfullyOfDeleteActionSelector = By.xpath("//*[contains(text(),'Successfully deleted action')]");
+
+
+    default By getSelectActionTypeFromDropDownSelector(ActionType actionType) {
+        return (By.xpath("//*[@aria-label='" + actionType.getValue() + "']"));
+    }
+    default By getSelectVariantToDecideIfYouWantDeleteActions(String yesOrNo) {
+        return (By.xpath("//*[contains(text(),'" + yesOrNo + "')]"));
+    }
+
 }
