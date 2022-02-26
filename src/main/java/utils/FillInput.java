@@ -5,17 +5,17 @@ import enums.SelectorType;
 
 import java.util.Objects;
 
-public class ClickOnElement {
+public class FillInput {
     protected String actionName;
     protected ActionType actionType;
     protected String selectorValue;
     protected SelectorType selectorType;
 
-    public ClickOnElement(String actionName, ActionType actionType) {
+    public FillInput(String actionName, ActionType actionType) {
         this.actionName = actionName;
         this.actionType = actionType;
     }
-    public ClickOnElement(String selectorValue, SelectorType selectorType) {
+    public FillInput(String selectorValue, SelectorType selectorType) {
         this.selectorValue = selectorValue;
         this.selectorType = selectorType;
     }
@@ -56,9 +56,8 @@ public class ClickOnElement {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ClickOnElement that = (ClickOnElement) o;
-        return Objects.equals(actionName, that.actionName) && actionType == that.actionType
-                && Objects.equals(selectorValue, that.selectorValue) && selectorType == that.selectorType;
+        FillInput fillInput = (FillInput) o;
+        return Objects.equals(actionName, fillInput.actionName) && actionType == fillInput.actionType && Objects.equals(selectorValue, fillInput.selectorValue) && selectorType == fillInput.selectorType;
     }
 
     @Override
@@ -68,7 +67,7 @@ public class ClickOnElement {
 
     @Override
     public String toString() {
-        return "ClickOnElement{" +
+        return "FillInput{" +
                 "actionName='" + actionName + '\'' +
                 ", actionType=" + actionType +
                 ", selectorValue='" + selectorValue + '\'' +

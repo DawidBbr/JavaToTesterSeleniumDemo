@@ -6,20 +6,21 @@ import enums.ActionType;
 import enums.SelectorType;
 import org.openqa.selenium.WebDriver;
 import utils.ClickOnElement;
+import utils.FillInput;
 
 import static utils.Interactions.click;
 import static utils.Interactions.sendKeys;
 
-public class ClickOnElementActionPage extends BasePage implements WebElementSelectorsPage, WebElementSelectorsFillInputAndClickOnElementPage {
+public class FillInputActionPage extends BasePage implements WebElementSelectorsPage, WebElementSelectorsFillInputAndClickOnElementPage {
 
-    public ClickOnElementActionPage(WebDriver driver) {
+    public FillInputActionPage(WebDriver driver) {
         super(driver);
     }
-    public void inputValidDataOfActionClickOnElement() {
-        ClickOnElement clickOnElement = new ClickOnElement("Click on Element", ActionType.CLICK_ON_ELEMENT);
-        sendKeys(driver, actionNameFieldSelector, clickOnElement.getActionName());
+    public void inputValidDataOfActionFillInput() {
+        FillInput fillInput = new FillInput("Click on Element", ActionType.FILL_INPUT);
+        sendKeys(driver, actionNameFieldSelector, fillInput.getActionName());
         click(driver, actionTypeFieldSelector);
-        click(driver, getSelectActionTypeFromDropDownSelector(ActionType.CLICK_ON_ELEMENT));
+        click(driver, getSelectActionTypeFromDropDownSelector(ActionType.FILL_INPUT));
     }
     public void clickOnProvideWayToLocateSelectorFromWebsite() {
         click(driver, provideWayToLocateSelector);

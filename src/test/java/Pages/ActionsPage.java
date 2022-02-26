@@ -3,8 +3,7 @@ package Pages;
 import Selectors.WebElementSelectorsPage;
 import org.openqa.selenium.WebDriver;
 
-import static utils.Interactions.click;
-import static utils.Interactions.ifActionsExistCLickOnTheMainCheckBox;
+import static utils.Interactions.*;
 
 public class ActionsPage extends BasePage implements WebElementSelectorsPage {
 
@@ -34,5 +33,8 @@ public class ActionsPage extends BasePage implements WebElementSelectorsPage {
     }
     public void clickInYesButtonToDeleteOneAction() {
         click(driver, getSelectVariantToDecideIfYouWantDeleteActions("Yes"));
+    }
+    public void inputValueToAction(String keys) {
+        sendKeys(driver, fieldToInputValueOfActionSelector, keys);
     }
 }

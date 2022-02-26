@@ -8,15 +8,15 @@ import utils.NavigateToUrlAndManualActivity;
 import static utils.Interactions.click;
 import static utils.Interactions.sendKeys;
 
-public class NavigateToUrlActionPage extends BasePage implements WebElementSelectorsPage {
+public class ManualActivityActionPage extends BasePage implements WebElementSelectorsPage {
 
-    public NavigateToUrlActionPage(WebDriver driver) {
+    public ManualActivityActionPage(WebDriver driver) {
         super(driver);
     }
     public void inputValidDataOfActionNavigateToUrl() {
-        NavigateToUrlAndManualActivity navigateToUrl = new NavigateToUrlAndManualActivity("Navigate to Url", ActionType.NAVIGATE_TO_URL);
+        NavigateToUrlAndManualActivity navigateToUrl = new NavigateToUrlAndManualActivity("Manual activity", ActionType.MANUAL_ACTIVITY);
         sendKeys(driver, actionNameFieldSelector, navigateToUrl.getActionName());
         click(driver, actionTypeFieldSelector);
-        click(driver, getSelectActionTypeFromDropDownSelector(ActionType.NAVIGATE_TO_URL));
+        click(driver, getSelectActionTypeFromDropDownSelector(ActionType.MANUAL_ACTIVITY));
     }
 }

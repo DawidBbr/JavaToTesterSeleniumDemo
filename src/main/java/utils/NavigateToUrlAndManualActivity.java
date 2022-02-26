@@ -3,17 +3,17 @@ package utils;
 import enums.ActionType;
 import java.util.Objects;
 
-public class NavigateToUrl {
+public class NavigateToUrlAndManualActivity {
 
     protected String actionName;
     protected ActionType actionType;
     protected String value;
 
-    public NavigateToUrl(String actionName, ActionType actionType) {
+    public NavigateToUrlAndManualActivity(String actionName, ActionType actionType) {
         this.actionName = actionName;
         this.actionType = actionType;
     }
-    public NavigateToUrl(String value) {
+    public NavigateToUrlAndManualActivity(String value) {
         this.value = value;
     }
 
@@ -45,7 +45,7 @@ public class NavigateToUrl {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NavigateToUrl that = (NavigateToUrl) o;
+        NavigateToUrlAndManualActivity that = (NavigateToUrlAndManualActivity) o;
         return Objects.equals(actionName, that.actionName) && actionType == that.actionType && Objects.equals(value, that.value);
     }
 

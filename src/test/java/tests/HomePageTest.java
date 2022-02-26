@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 public class HomePageTest extends BaseTest {
 
     @Test
-    public void shouldReturnSuccessfulCreationOfActionNavigateToUrl() {
+    public void shouldReturnSuccessfulCreationOfActionNavigateToUrlAndDeleteThatAction() {
         loginPage.sendLoginDataToLogIn();
         loginPage.clickOnSignInButton();
         assertionsPage.assertTopMenuActionsButtonIsDisplayed();
@@ -18,7 +18,7 @@ public class HomePageTest extends BaseTest {
         assertionsPage.assertActionNameFieldIsDisplayed();
         navigateToUrlActionPage.inputValidDataOfActionNavigateToUrl();
         actionsPage.clickOnNextActionStepButton();
-        navigateToUrlActionPage.inputValueToAction("${URL}");
+        actionsPage.inputValueToAction("${URL}");
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
         assertionsPage.assertListOfActionsIsDisplayed();
@@ -28,7 +28,7 @@ public class HomePageTest extends BaseTest {
     }
 
     @Test
-    public void shouldReturnSuccessfulCreationOfActionClickOnElement() {
+    public void shouldReturnSuccessfulCreationOfActionClickOnElementAndDeleteThatAction() {
         loginPage.sendLoginDataToLogIn();
         loginPage.clickOnSignInButton();
         assertionsPage.assertTopMenuActionsButtonIsDisplayed();
@@ -50,4 +50,50 @@ public class HomePageTest extends BaseTest {
         actionsPage.clickInYesButtonToDeleteOneAction();
         assertionsPage.assertActionWasDeleted();
     }
+    @Test
+    public void shouldReturnSuccessfulCreationOfActionFillInputAndDeleteThatAction() {
+        loginPage.sendLoginDataToLogIn();
+        loginPage.clickOnSignInButton();
+        assertionsPage.assertTopMenuActionsButtonIsDisplayed();
+        actionsPage.clickOnTopMenuActionsOfDrapla();
+        assertionsPage.assertAddNewActionsButtonIsDisplayed();
+        actionsPage.clickOnDeleteAllActionsIfAreDisplayed();
+        assertionsPage.assertAddNewActionsButtonIsDisplayed();
+        actionsPage.clickOnAddNewActionsButton();
+        assertionsPage.assertActionNameFieldIsDisplayed();
+        fillInputActionPage.inputValidDataOfActionFillInput();
+        actionsPage.clickOnNextActionStepButton();
+        fillInputActionPage.clickOnProvideWayToLocateSelectorFromWebsite();
+        actionsPage.clickOnNextActionStepButton();
+        fillInputActionPage.inputValidDataOfSelector();
+        actionsPage.clickOnNextActionStepButton();
+        actionsPage.inputValueToAction("${value}");
+        actionsPage.clickOnNextActionStepButton();
+        actionsPage.clickOnButtonFinishCreateAction();
+        assertionsPage.assertListOfActionsIsDisplayed();
+        actionsPage.clickOnDeleteAction();
+        actionsPage.clickInYesButtonToDeleteOneAction();
+        assertionsPage.assertActionWasDeleted();
+    }
+    @Test
+    public void shouldReturnSuccessfulCreationOfActionManualActivityAndDeleteThatAction() {
+        loginPage.sendLoginDataToLogIn();
+        loginPage.clickOnSignInButton();
+        assertionsPage.assertTopMenuActionsButtonIsDisplayed();
+        actionsPage.clickOnTopMenuActionsOfDrapla();
+        assertionsPage.assertAddNewActionsButtonIsDisplayed();
+        actionsPage.clickOnDeleteAllActionsIfAreDisplayed();
+        assertionsPage.assertAddNewActionsButtonIsDisplayed();
+        actionsPage.clickOnAddNewActionsButton();
+        assertionsPage.assertActionNameFieldIsDisplayed();
+        manualActivityActionPage.inputValidDataOfActionNavigateToUrl();
+        actionsPage.clickOnNextActionStepButton();
+        actionsPage.inputValueToAction("Do something manually");
+        actionsPage.clickOnNextActionStepButton();
+        actionsPage.clickOnButtonFinishCreateAction();
+        assertionsPage.assertListOfActionsIsDisplayed();
+        actionsPage.clickOnDeleteAction();
+        actionsPage.clickInYesButtonToDeleteOneAction();
+        assertionsPage.assertActionWasDeleted();
+}
 }
