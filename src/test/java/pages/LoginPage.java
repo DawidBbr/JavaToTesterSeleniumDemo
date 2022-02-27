@@ -1,6 +1,6 @@
-package Pages;
+package pages;
 
-import Selectors.WebElementSelectorsPage;
+import selectors.WebElementSelectorsPage;
 import org.openqa.selenium.WebDriver;
 import utils.LoginData;
 

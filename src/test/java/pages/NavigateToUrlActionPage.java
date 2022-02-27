@@ -1,12 +1,11 @@
-package Pages;
+package pages;
 
-import Selectors.WebElementSelectorsPage;
+import selectors.WebElementSelectorsPage;
 import enums.ActionType;
 import org.openqa.selenium.WebDriver;
 import utils.NavigateToUrlAndManualActivity;
 
-import static utils.Interactions.click;
-import static utils.Interactions.sendKeys;
+import static utils.Interactions.*;
 
 public class NavigateToUrlActionPage extends BasePage implements WebElementSelectorsPage {
 
@@ -14,6 +13,7 @@ public class NavigateToUrlActionPage extends BasePage implements WebElementSelec
         super(driver);
     }
     public void inputValidDataOfActionNavigateToUrl() {
+        awaitUntilElementDisplayed(driver, actionNameFieldSelector);
         NavigateToUrlAndManualActivity navigateToUrl = new NavigateToUrlAndManualActivity("Navigate to Url", ActionType.NAVIGATE_TO_URL);
         sendKeys(driver, actionNameFieldSelector, navigateToUrl.getActionName());
         click(driver, actionTypeFieldSelector);

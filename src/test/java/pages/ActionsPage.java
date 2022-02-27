@@ -1,6 +1,6 @@
-package Pages;
+package pages;
 
-import Selectors.WebElementSelectorsPage;
+import selectors.WebElementSelectorsPage;
 import org.openqa.selenium.WebDriver;
 
 import static utils.Interactions.*;
@@ -11,13 +11,16 @@ public class ActionsPage extends BasePage implements WebElementSelectorsPage {
         super(driver);
     }
     public void clickOnTopMenuActionsOfDrapla() {
+        awaitUntilElementDisplayed(driver, topMenuActionsSelector);
         click(driver, topMenuActionsSelector);
     }
     public void clickOnDeleteAllActionsIfAreDisplayed() {
+        awaitUntilElementDisplayed(driver, addNewActionsButtonSelector);
         ifActionsExistCLickOnTheMainCheckBox(driver, rowDataNamesSelector, theMainCheckBoxForAllActionsSelector,
                 deleteButtonInActions, getSelectVariantToDecideIfYouWantDeleteActions("Yes"));
     }
     public void clickOnAddNewActionsButton() {
+        awaitUntilElementDisplayed(driver, addNewActionsButtonSelector);
         click(driver, addNewActionsButtonSelector);
     }
 

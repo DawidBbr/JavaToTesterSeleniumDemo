@@ -1,4 +1,4 @@
-package Selectors;
+package selectors;
 
 import enums.ActionType;
 import org.openqa.selenium.By;

@@ -1,6 +1,6 @@
-package Pages;
+package pages;
 
-import Selectors.WebElementSelectorsPage;
+import selectors.WebElementSelectorsPage;
 import org.openqa.selenium.WebDriver;
 
 import static utils.Interactions.awaitUntilElementDisplayed;
@@ -11,16 +11,6 @@ public class AssertionsPage  extends BasePage implements WebElementSelectorsPage
 
     public AssertionsPage(WebDriver driver) {
         super(driver);
-    }
-    public void assertTopMenuActionsButtonIsDisplayed() {
-        awaitUntilElementDisplayed(driver, topMenuActionsSelector);
-    }
-
-    public void assertAddNewActionsButtonIsDisplayed() {
-        awaitUntilElementDisplayed(driver, addNewActionsButtonSelector);
-    }
-    public void assertActionNameFieldIsDisplayed() {
-        awaitUntilElementDisplayed(driver, actionNameFieldSelector);
     }
     public void assertListOfActionsIsDisplayed() {
         awaitUntilElementDisplayed(driver, rowDataNamesSelector);

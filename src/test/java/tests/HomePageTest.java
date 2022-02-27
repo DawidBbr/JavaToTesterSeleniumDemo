@@ -1,43 +1,42 @@
 package tests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class HomePageTest extends BaseTest {
-
-    @Test
-    public void shouldReturnSuccessfulCreationOfActionNavigateToUrlAndDeleteThatAction() {
+    @BeforeEach
+    public void logInToDrapla() {
         loginPage.sendLoginDataToLogIn();
         loginPage.clickOnSignInButton();
-        assertionsPage.assertTopMenuActionsButtonIsDisplayed();
+    }
+
+    @Test
+    public void shouldReturnSuccessOfCreatedActionNavigateToUrl() {
         actionsPage.clickOnTopMenuActionsOfDrapla();
-        assertionsPage.assertAddNewActionsButtonIsDisplayed();
         actionsPage.clickOnDeleteAllActionsIfAreDisplayed();
-        assertionsPage.assertAddNewActionsButtonIsDisplayed();
         assertionsPage.assertIfAnyActionsExist();
         actionsPage.clickOnAddNewActionsButton();
-        assertionsPage.assertActionNameFieldIsDisplayed();
         navigateToUrlActionPage.inputValidDataOfActionNavigateToUrl();
         actionsPage.clickOnNextActionStepButton();
         actionsPage.inputValueToAction("${URL}");
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
         assertionsPage.assertListOfActionsIsDisplayed();
+    }
+
+    @Test
+    public void shouldReturnSuccessOfDeletedActionNavigateToUrl() {
+        actionsPage.clickOnTopMenuActionsOfDrapla();
         actionsPage.clickOnDeleteAction();
         actionsPage.clickInYesButtonToDeleteOneAction();
         assertionsPage.assertActionWasDeleted();
     }
 
     @Test
-    public void shouldReturnSuccessfulCreationOfActionClickOnElementAndDeleteThatAction() {
-        loginPage.sendLoginDataToLogIn();
-        loginPage.clickOnSignInButton();
-        assertionsPage.assertTopMenuActionsButtonIsDisplayed();
+    public void shouldReturnSuccessOfCreatedActionClickOnElement() {
         actionsPage.clickOnTopMenuActionsOfDrapla();
-        assertionsPage.assertAddNewActionsButtonIsDisplayed();
         actionsPage.clickOnDeleteAllActionsIfAreDisplayed();
-        assertionsPage.assertAddNewActionsButtonIsDisplayed();
         actionsPage.clickOnAddNewActionsButton();
-        assertionsPage.assertActionNameFieldIsDisplayed();
         clickOnElementActionPage.inputValidDataOfActionClickOnElement();
         actionsPage.clickOnNextActionStepButton();
         clickOnElementActionPage.clickOnProvideWayToLocateSelectorFromWebsite();
@@ -46,21 +45,21 @@ public class HomePageTest extends BaseTest {
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
         assertionsPage.assertListOfActionsIsDisplayed();
+    }
+
+    @Test
+    public void shouldReturnSuccessOfDeletedActionClickOnElement() {
+        actionsPage.clickOnTopMenuActionsOfDrapla();
         actionsPage.clickOnDeleteAction();
         actionsPage.clickInYesButtonToDeleteOneAction();
         assertionsPage.assertActionWasDeleted();
     }
+
     @Test
-    public void shouldReturnSuccessfulCreationOfActionFillInputAndDeleteThatAction() {
-        loginPage.sendLoginDataToLogIn();
-        loginPage.clickOnSignInButton();
-        assertionsPage.assertTopMenuActionsButtonIsDisplayed();
+    public void shouldReturnSuccessOfCreatedActionFillInput() {
         actionsPage.clickOnTopMenuActionsOfDrapla();
-        assertionsPage.assertAddNewActionsButtonIsDisplayed();
         actionsPage.clickOnDeleteAllActionsIfAreDisplayed();
-        assertionsPage.assertAddNewActionsButtonIsDisplayed();
         actionsPage.clickOnAddNewActionsButton();
-        assertionsPage.assertActionNameFieldIsDisplayed();
         fillInputActionPage.inputValidDataOfActionFillInput();
         actionsPage.clickOnNextActionStepButton();
         fillInputActionPage.clickOnProvideWayToLocateSelectorFromWebsite();
@@ -71,42 +70,42 @@ public class HomePageTest extends BaseTest {
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
         assertionsPage.assertListOfActionsIsDisplayed();
+    }
+
+    @Test
+    public void shouldReturnSuccessOfDeletedActionFillInput() {
+        actionsPage.clickOnTopMenuActionsOfDrapla();
         actionsPage.clickOnDeleteAction();
         actionsPage.clickInYesButtonToDeleteOneAction();
         assertionsPage.assertActionWasDeleted();
     }
+
     @Test
-    public void shouldReturnSuccessfulCreationOfActionManualActivityAndDeleteThatAction() {
-        loginPage.sendLoginDataToLogIn();
-        loginPage.clickOnSignInButton();
-        assertionsPage.assertTopMenuActionsButtonIsDisplayed();
+    public void shouldReturnSuccessOfCreatedActionManualActivity() {
         actionsPage.clickOnTopMenuActionsOfDrapla();
-        assertionsPage.assertAddNewActionsButtonIsDisplayed();
         actionsPage.clickOnDeleteAllActionsIfAreDisplayed();
-        assertionsPage.assertAddNewActionsButtonIsDisplayed();
         actionsPage.clickOnAddNewActionsButton();
-        assertionsPage.assertActionNameFieldIsDisplayed();
         manualActivityActionPage.inputValidDataOfActionNavigateToUrl();
         actionsPage.clickOnNextActionStepButton();
         actionsPage.inputValueToAction("Do something manually");
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
         assertionsPage.assertListOfActionsIsDisplayed();
+    }
+
+    @Test
+    public void shouldReturnSuccessOfDeletedActionManualActivity() {
+        actionsPage.clickOnTopMenuActionsOfDrapla();
         actionsPage.clickOnDeleteAction();
         actionsPage.clickInYesButtonToDeleteOneAction();
         assertionsPage.assertActionWasDeleted();
-}
+    }
+
     @Test
-    public void shouldReturnSuccessfulCreationOfActionAssertionElementDisplayedAndDeleteThatAction() {
-        loginPage.sendLoginDataToLogIn();
-        loginPage.clickOnSignInButton();
-        assertionsPage.assertTopMenuActionsButtonIsDisplayed();
+    public void shouldReturnSuccessOfCreatedActionAssertionElementDisplayed() {
         actionsPage.clickOnTopMenuActionsOfDrapla();
-        assertionsPage.assertAddNewActionsButtonIsDisplayed();
         actionsPage.clickOnDeleteAllActionsIfAreDisplayed();
-        assertionsPage.assertAddNewActionsButtonIsDisplayed();
         actionsPage.clickOnAddNewActionsButton();
-        assertionsPage.assertActionNameFieldIsDisplayed();
         assertionActionPage.inputValidDataOfActionAssertion();
         actionsPage.clickOnNextActionStepButton();
         assertionActionPage.clickOnAssertionTypeFromDropDown();
@@ -117,6 +116,11 @@ public class HomePageTest extends BaseTest {
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
         assertionsPage.assertListOfActionsIsDisplayed();
+    }
+
+    @Test
+    public void shouldReturnSuccessOfDeletedActionAssertionElementDisplayed() {
+        actionsPage.clickOnTopMenuActionsOfDrapla();
         actionsPage.clickOnDeleteAction();
         actionsPage.clickInYesButtonToDeleteOneAction();
         assertionsPage.assertActionWasDeleted();

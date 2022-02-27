@@ -1,14 +1,13 @@
-package Pages;
+package pages;
 
-import Selectors.WebElementSelectorsFillInputAndClickOnElementPage;
-import Selectors.WebElementSelectorsPage;
+import selectors.WebElementSelectorsFillInputAndClickOnElementPage;
+import selectors.WebElementSelectorsPage;
 import enums.ActionType;
 import enums.SelectorType;
 import org.openqa.selenium.WebDriver;
 import utils.ClickOnElement;
 
-import static utils.Interactions.click;
-import static utils.Interactions.sendKeys;
+import static utils.Interactions.*;
 
 public class ClickOnElementActionPage extends BasePage implements WebElementSelectorsPage, WebElementSelectorsFillInputAndClickOnElementPage {
 
@@ -16,6 +15,7 @@ public class ClickOnElementActionPage extends BasePage implements WebElementSele
         super(driver);
     }
     public void inputValidDataOfActionClickOnElement() {
+        awaitUntilElementDisplayed(driver, actionNameFieldSelector);
         ClickOnElement clickOnElement = new ClickOnElement("Click on Element", ActionType.CLICK_ON_ELEMENT);
         sendKeys(driver, actionNameFieldSelector, clickOnElement.getActionName());
         click(driver, actionTypeFieldSelector);

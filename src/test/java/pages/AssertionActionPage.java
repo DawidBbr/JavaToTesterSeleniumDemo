@@ -1,15 +1,14 @@
-package Pages;
+package pages;
 
-import Selectors.WebElementSelectorsAssertionPage;
-import Selectors.WebElementSelectorsPage;
+import selectors.WebElementSelectorsAssertionPage;
+import selectors.WebElementSelectorsPage;
 import enums.ActionType;
 import enums.AssertionType;
 import enums.SelectorType;
 import org.openqa.selenium.WebDriver;
 import utils.Assertion;
 
-import static utils.Interactions.click;
-import static utils.Interactions.sendKeys;
+import static utils.Interactions.*;
 
 public class AssertionActionPage extends BasePage implements WebElementSelectorsPage, WebElementSelectorsAssertionPage {
 
@@ -17,6 +16,7 @@ public class AssertionActionPage extends BasePage implements WebElementSelectors
         super(driver);
     }
     public void inputValidDataOfActionAssertion() {
+        awaitUntilElementDisplayed(driver, actionNameFieldSelector);
         Assertion assertion = new Assertion("Assertion", ActionType.ASSERTION);
         sendKeys(driver, actionNameFieldSelector, assertion.getActionName());
         click(driver, actionTypeFieldSelector);
