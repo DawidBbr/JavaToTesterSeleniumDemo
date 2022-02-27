@@ -21,7 +21,6 @@ public class HomePageTest extends BaseTest {
         actionsPage.inputValueToAction("${URL}");
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
-        assertionsPage.assertListOfActionsIsDisplayed();
     }
 
     @Test
@@ -44,7 +43,6 @@ public class HomePageTest extends BaseTest {
         clickOnElementActionPage.inputValidDataOfSelector();
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
-        assertionsPage.assertListOfActionsIsDisplayed();
     }
 
     @Test
@@ -69,7 +67,6 @@ public class HomePageTest extends BaseTest {
         actionsPage.inputValueToAction("${value}");
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
-        assertionsPage.assertListOfActionsIsDisplayed();
     }
 
     @Test
@@ -90,7 +87,6 @@ public class HomePageTest extends BaseTest {
         actionsPage.inputValueToAction("Do something manually");
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
-        assertionsPage.assertListOfActionsIsDisplayed();
     }
 
     @Test
@@ -115,7 +111,6 @@ public class HomePageTest extends BaseTest {
         assertionActionPage.inputValidDataOfSelector();
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
-        assertionsPage.assertListOfActionsIsDisplayed();
     }
 
     @Test

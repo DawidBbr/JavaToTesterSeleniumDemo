@@ -30,6 +30,7 @@ public class ActionsPage extends BasePage implements WebElementSelectorsPage {
 
     public void clickOnButtonFinishCreateAction() {
         click(driver, finishActionStepButtonSelector);
+        awaitUntilElementDisplayed(driver, rowDataNamesSelector);
     }
     public  void clickOnDeleteAction() {
         click(driver, deleteOneActionButtonSelector);
