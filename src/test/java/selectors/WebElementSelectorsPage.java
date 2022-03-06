@@ -20,7 +20,6 @@ public interface WebElementSelectorsPage {
     By deleteOneActionButtonSelector = By.xpath("//*[contains(@id,'table-delete-button')]");
     By successfullyOfDeleteActionSelector = By.xpath("//*[contains(text(),'Successfully deleted action')]");
 
-
     default By getSelectActionTypeFromDropDownSelector(ActionType actionType) {
         return (By.xpath("//*[@aria-label='" + actionType.getValue() + "']"));
     }

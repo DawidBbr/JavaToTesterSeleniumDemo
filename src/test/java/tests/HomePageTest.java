@@ -9,12 +9,9 @@ public class HomePageTest extends BaseTest {
         loginPage.sendLoginDataToLogIn();
         loginPage.clickOnSignInButton();
     }
-
     @Test
     public void shouldReturnSuccessOfCreatedActionNavigateToUrl() {
         actionsPage.clickOnTopMenuActionsOfDrapla();
-        actionsPage.clickOnDeleteAllActionsIfAreDisplayed();
-        assertionsPage.assertIfAnyActionsExist();
         actionsPage.clickOnAddNewActionsButton();
         navigateToUrlActionPage.inputValidDataOfActionNavigateToUrl();
         actionsPage.clickOnNextActionStepButton();
@@ -24,17 +21,8 @@ public class HomePageTest extends BaseTest {
     }
 
     @Test
-    public void shouldReturnSuccessOfDeletedActionNavigateToUrl() {
-        actionsPage.clickOnTopMenuActionsOfDrapla();
-        actionsPage.clickOnDeleteAction();
-        actionsPage.clickInYesButtonToDeleteOneAction();
-        assertionsPage.assertActionWasDeleted();
-    }
-
-    @Test
     public void shouldReturnSuccessOfCreatedActionClickOnElement() {
         actionsPage.clickOnTopMenuActionsOfDrapla();
-        actionsPage.clickOnDeleteAllActionsIfAreDisplayed();
         actionsPage.clickOnAddNewActionsButton();
         clickOnElementActionPage.inputValidDataOfActionClickOnElement();
         actionsPage.clickOnNextActionStepButton();
@@ -46,17 +34,8 @@ public class HomePageTest extends BaseTest {
     }
 
     @Test
-    public void shouldReturnSuccessOfDeletedActionClickOnElement() {
-        actionsPage.clickOnTopMenuActionsOfDrapla();
-        actionsPage.clickOnDeleteAction();
-        actionsPage.clickInYesButtonToDeleteOneAction();
-        assertionsPage.assertActionWasDeleted();
-    }
-
-    @Test
     public void shouldReturnSuccessOfCreatedActionFillInput() {
         actionsPage.clickOnTopMenuActionsOfDrapla();
-        actionsPage.clickOnDeleteAllActionsIfAreDisplayed();
         actionsPage.clickOnAddNewActionsButton();
         fillInputActionPage.inputValidDataOfActionFillInput();
         actionsPage.clickOnNextActionStepButton();
@@ -70,17 +49,8 @@ public class HomePageTest extends BaseTest {
     }
 
     @Test
-    public void shouldReturnSuccessOfDeletedActionFillInput() {
-        actionsPage.clickOnTopMenuActionsOfDrapla();
-        actionsPage.clickOnDeleteAction();
-        actionsPage.clickInYesButtonToDeleteOneAction();
-        assertionsPage.assertActionWasDeleted();
-    }
-
-    @Test
     public void shouldReturnSuccessOfCreatedActionManualActivity() {
         actionsPage.clickOnTopMenuActionsOfDrapla();
-        actionsPage.clickOnDeleteAllActionsIfAreDisplayed();
         actionsPage.clickOnAddNewActionsButton();
         manualActivityActionPage.inputValidDataOfActionNavigateToUrl();
         actionsPage.clickOnNextActionStepButton();
@@ -90,17 +60,8 @@ public class HomePageTest extends BaseTest {
     }
 
     @Test
-    public void shouldReturnSuccessOfDeletedActionManualActivity() {
-        actionsPage.clickOnTopMenuActionsOfDrapla();
-        actionsPage.clickOnDeleteAction();
-        actionsPage.clickInYesButtonToDeleteOneAction();
-        assertionsPage.assertActionWasDeleted();
-    }
-
-    @Test
     public void shouldReturnSuccessOfCreatedActionAssertionElementDisplayed() {
         actionsPage.clickOnTopMenuActionsOfDrapla();
-        actionsPage.clickOnDeleteAllActionsIfAreDisplayed();
         actionsPage.clickOnAddNewActionsButton();
         assertionActionPage.inputValidDataOfActionAssertion();
         actionsPage.clickOnNextActionStepButton();
@@ -114,10 +75,11 @@ public class HomePageTest extends BaseTest {
     }
 
     @Test
-    public void shouldReturnSuccessOfDeletedActionAssertionElementDisplayed() {
+    public void shouldReturnSuccessOfDeletedAllExistingAction() {
         actionsPage.clickOnTopMenuActionsOfDrapla();
-        actionsPage.clickOnDeleteAction();
-        actionsPage.clickInYesButtonToDeleteOneAction();
+        actionsPage.clickOnMainCheckBox();
+        actionsPage.clickOnDeleteAllActions();
+        actionsPage.clickInYesButtonToDeleteAllAction();
         assertionsPage.assertActionWasDeleted();
     }
 }

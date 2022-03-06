@@ -27,15 +27,18 @@ public class ActionsPage extends BasePage implements WebElementSelectorsPage {
     public void clickOnNextActionStepButton() {
         click(driver, nextActionStepButtonSelector);
     }
-
+    public void clickOnMainCheckBox() {
+        click(driver, theMainCheckBoxForAllActionsSelector);
+        awaitUntilElementDisplayed(driver, rowDataNamesSelector);
+    }
     public void clickOnButtonFinishCreateAction() {
         click(driver, finishActionStepButtonSelector);
         awaitUntilElementDisplayed(driver, rowDataNamesSelector);
     }
-    public  void clickOnDeleteAction() {
-        click(driver, deleteOneActionButtonSelector);
+    public  void clickOnDeleteAllActions() {
+        click(driver, deleteButtonInActions);
     }
-    public void clickInYesButtonToDeleteOneAction() {
+    public void clickInYesButtonToDeleteAllAction() {
         click(driver, getSelectVariantToDecideIfYouWantDeleteActions("Yes"));
     }
     public void inputValueToAction(String keys) {
