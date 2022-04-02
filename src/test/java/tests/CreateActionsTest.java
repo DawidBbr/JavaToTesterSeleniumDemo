@@ -4,8 +4,7 @@ package tests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class HomePageTest extends BaseTest {
-
+public class CreateActionsTest extends BaseTest {
 
     @BeforeEach
     void compose() {
@@ -33,7 +32,7 @@ public class HomePageTest extends BaseTest {
         actionTypesPage = actionsPage.clickOnNextActionStepButton();
         actionsPage = actionTypesPage.clickOnProvideWayToLocateSelectorFromWebsite();
         actionTypesPage = actionsPage.clickOnNextActionStepButton();
-        actionsPage = actionTypesPage.inputValidDataOfSelectorClickOnElement();
+        actionsPage = actionTypesPage.inputValidDataOfSelectorClickOnElement("xpath");
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
         actionsPage.assertActionWasCreated();
@@ -47,7 +46,7 @@ public class HomePageTest extends BaseTest {
         actionTypesPage = actionsPage.clickOnNextActionStepButton();
         actionsPage = actionTypesPage.clickOnProvideWayToLocateSelectorFromWebsite();
         actionTypesPage = actionsPage.clickOnNextActionStepButton();
-        actionsPage = actionTypesPage.inputValidDataOfSelectorFillInput();
+        actionsPage = actionTypesPage.inputValidDataOfSelectorFillInput("xpath");
         actionsPage.clickOnNextActionStepButton();
         actionsPage.fillValueInAction("${value}");
         actionsPage.clickOnNextActionStepButton();
@@ -77,7 +76,7 @@ public class HomePageTest extends BaseTest {
         actionTypesPage = actionsPage.clickOnNextActionStepButton();
         actionsPage = actionTypesPage.clickOnProvideWayToLocateSelectorFromWebsite();
         actionTypesPage = actionsPage.clickOnNextActionStepButton();
-        actionsPage = actionTypesPage.inputValidDataOfSelectorAssertion();
+        actionsPage = actionTypesPage.inputValidDataOfSelectorAssertion("xpath");
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
         actionsPage.assertActionWasCreated();
