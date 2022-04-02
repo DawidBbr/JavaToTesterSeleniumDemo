@@ -2,77 +2,119 @@ package utils;
 
 import org.awaitility.Awaitility;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
-import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class Interactions {
+    private final int TIMEOUT = 5;
+    protected WebDriver driver;
 
-    private final static int TIMEOUT = 5;
-
-    public static void awaitUntilElementDisplayed(WebDriver driver, By selector) {
-        Awaitility.await().atMost(TIMEOUT, TimeUnit.SECONDS).ignoreExceptions().until(() -> driver.findElement(selector).isDisplayed());
+    public Interactions(WebDriver driver) {
+        this.driver = driver;
     }
 
-    public static void click(WebDriver driver, By selector) {
-        awaitUntilElementDisplayed(driver, selector);
+    public void awaitUntilElementDisplayed(By selector) {
+        Awaitility.await().atMost(TIMEOUT, TimeUnit.SECONDS).ignoreExceptions().until(() -> driver.findElement(selector).isDisplayed());
+    }
+    public void awaitUntilElementToAppear(By selector) {
+        Awaitility.await().atMost(10, TimeUnit.SECONDS).pollInterval(2,TimeUnit.SECONDS).ignoreExceptions().until(() -> driver.findElement(selector).isDisplayed());
+    }
+
+
+    public void click(By selector) {
+        awaitUntilElementDisplayed(selector);
         driver.findElement(selector).click();
     }
 
-    public static void sendKeys(WebDriver driver, By selector, String keys) {
-        awaitUntilElementDisplayed(driver, selector);
+    public void sendKeys(By selector, String keys) {
+        awaitUntilElementDisplayed(selector);
         driver.findElement(selector).click();
         driver.findElement(selector).sendKeys(keys);
     }
 
-    public static void clickAfterClick(WebDriver driver, By selector, By selector2) {
-        awaitUntilElementDisplayed(driver, selector);
-        driver.findElement(selector).click();
-        awaitUntilElementDisplayed(driver, selector2);
-        driver.findElement(selector2).click();
+    public void clear(By selector) {
+        awaitUntilElementDisplayed(selector);
+        driver.findElement(selector).clear();
     }
 
-    public static boolean isElementDisplayed(WebDriver driver, By selector) {
-        boolean elementPresent = false;
-        try {
-            if (driver.findElement(selector).isDisplayed()) {
-                elementPresent = true;
-            }
-        } catch (NoSuchElementException e) {
-            System.out.println("Element is not present " + e);
+    public void clearByKeys(By selector) {
+        awaitUntilElementDisplayed(selector);
+        driver.findElement(selector).sendKeys(Keys.CONTROL, "a", Keys.DELETE);
+    }
+
+    public void ifDisplayedCheckIt(By selector) {
+        if (driver.findElement(selector).isDisplayed()) {
+            awaitUntilElementDisplayed(selector);
         }
-        return elementPresent;
     }
 
-    public static void hoverOverAndClickOnDropDownElement(WebDriver driver, By fieldToExpandSelector, By elementFromDropDownSelector) {
-        awaitUntilElementDisplayed(driver, fieldToExpandSelector);
+    public void ifDisplayedClick(By selector) {
+        awaitUntilElementDisplayed(selector);
+        if (driver.findElement(selector).isDisplayed()) {
+            driver.findElement(selector).click();
+        }
+    }
+
+    public void mouseOverElementAndClickOnSubElement(By elementToExpand, By subElement) {
+        awaitUntilElementDisplayed(elementToExpand);
         Actions actions = new Actions(driver);
-        actions.moveToElement(driver.findElement(fieldToExpandSelector)).perform();
-        awaitUntilElementDisplayed(driver, elementFromDropDownSelector);
-        driver.findElement(elementFromDropDownSelector).click();
+        actions.moveToElement(driver.findElement(elementToExpand)).perform();
+        awaitUntilElementDisplayed(subElement);
+        driver.findElement(subElement).click();
     }
 
-    public static void moveSliderFromOnePlaceToDestination(WebDriver driver, By selector) {
-        awaitUntilElementDisplayed(driver, selector);
-        Actions slider = new Actions(driver);
-        slider.moveToElement(driver.findElement(selector)).clickAndHold().moveByOffset(0, 50).release().perform();
-    }
-
-    public static void ifActionsExistCLickOnTheMainCheckBox(WebDriver driver, By rowDataNames, By theMainCheckBoxSelector,
-                                                            By buttonDelete, By buttonYesOrNo) {
+    public void ifActionsExistCLickOnTheMainCheckBox(By rowDataNames, By theMainCheckBoxSelector,
+                                                     By buttonDelete, By buttonYesOrNo) {
         if (driver.findElements(rowDataNames).size() > 0) {
             driver.findElement(theMainCheckBoxSelector).click();
-            awaitUntilElementDisplayed(driver, buttonDelete);
+            awaitUntilElementDisplayed(buttonDelete);
             driver.findElement(buttonDelete).click();
-            awaitUntilElementDisplayed(driver, buttonYesOrNo);
+            awaitUntilElementDisplayed(buttonYesOrNo);
             driver.findElement(buttonYesOrNo).click();
         }
     }
-        public static void ifActionsExistAssertThem(WebDriver driver, By rowDataNames){
-            if (driver.findElements(rowDataNames).size() > 0) {
-                awaitUntilElementDisplayed(driver, rowDataNames);
-            }
+
+    public void ifActionsExistAssertThem(By rowDataNames) {
+        if (driver.findElements(rowDataNames).size() > 0) {
+            awaitUntilElementDisplayed(rowDataNames);
         }
     }
+
+    public void refreshPage() {
+        JavascriptExecutor method = ((JavascriptExecutor) driver);
+        method.executeScript("document.location.reload()");
+    }
+
+    public void scrollPage(int scrollFactor) {
+        JavascriptExecutor scroll = ((JavascriptExecutor) driver);
+        scroll.executeScript("window.scrollBy(0," + scrollFactor + ")");
+    }
+
+    public void scrollToVisibleElement(By selector) {
+        awaitUntilElementDisplayed(selector);
+        JavascriptExecutor scroll = ((JavascriptExecutor) driver);
+        scroll.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(selector));
+    }
+
+    public void scrollToBottomOfPage() {
+        JavascriptExecutor scroll = ((JavascriptExecutor) driver);
+        scroll.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    }
+
+    public void moveSlider(By slider, int shiftX, int shiftY) {
+        awaitUntilElementDisplayed(slider);
+        Actions move = new Actions(driver);
+        move.dragAndDropBy(driver.findElement(slider), shiftX, shiftY).click();
+        move.build().perform();
+    }
+
+    public void rightClick(By selector) {
+        awaitUntilElementDisplayed(selector);
+        Actions clicker = new Actions(driver);
+        clicker.contextClick(driver.findElement(selector)).perform();
+    }
+}

@@ -1,11 +1,12 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
+import utils.Interactions;
 
 public abstract class BasePage {
-    protected WebDriver driver;
+    protected Interactions driver;
 
-    public BasePage(WebDriver driver) {
+    public BasePage(Interactions driver) {
         this.driver = driver;
     }
 }
+

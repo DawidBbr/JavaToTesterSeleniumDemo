@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 public interface WebElementSelectorsPage {
     By emailFieldInLoginPageDraplaSelector = By.id("email");
     By passwordFieldInLoginPageDraplaSelector = By.id("password");
+    By incorrectFieldRegexPasswordSelector = By.id("error-password");
+    By fieldCheckEmailAndPasswordSelector = By.id("error-backend");
     By signInButtonInLoginPageDraplaSelector = By.id("submit");
     By topMenuActionsSelector = By.id("top-menu-actions");
     By rowDataNamesSelector = By.xpath("//*[contains(@id,'row-data-name')]");
@@ -18,7 +20,8 @@ public interface WebElementSelectorsPage {
     By fieldToInputValueOfActionSelector = By.xpath("//*[@ng-trim='false']");
     By finishActionStepButtonSelector = By.xpath("//*[contains(text(),'Finish')]");
     By deleteOneActionButtonSelector = By.xpath("//*[contains(@id,'table-delete-button')]");
-    By successfullyOfDeleteActionSelector = By.xpath("//*[contains(text(),'Successfully deleted action')]");
+    By successfullyOfDeletedActionSelector = By.xpath("//*[contains(text(),'Successfully deleted action')]");
+    By successfullyOfCreatedActionSelector = By.xpath("//*[contains(text(),'Action created successfully')]");
 
     default By getSelectActionTypeFromDropDownSelector(ActionType actionType) {
         return (By.xpath("//*[@aria-label='" + actionType.getValue() + "']"));

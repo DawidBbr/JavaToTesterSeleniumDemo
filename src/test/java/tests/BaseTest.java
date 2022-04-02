@@ -6,11 +6,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import utils.Interactions;
 
 public class BaseTest {
     protected static final String BASE_URL = "https://app.drapla.com/login";
     protected WebDriver driver;
+    protected Interactions interactions;
     protected LoginPage loginPage;
+    protected TestCasePage testCasePage;
     protected ActionsPage actionsPage;
     protected AssertionsPage assertionsPage;
     protected NavigateToUrlActionPage navigateToUrlActionPage;
@@ -23,16 +26,17 @@ public class BaseTest {
     public void setupTest() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        interactions = new Interactions(driver);
         driver.get(BASE_URL);
         driver.manage().window().maximize();
-        loginPage = new LoginPage(driver);
-        actionsPage = new ActionsPage(driver);
-        assertionsPage = new AssertionsPage(driver);
-        navigateToUrlActionPage = new NavigateToUrlActionPage(driver);
-        clickOnElementActionPage = new ClickOnElementActionPage(driver);
-        fillInputActionPage = new FillInputActionPage(driver);
-        manualActivityActionPage = new ManualActivityActionPage(driver);
-        assertionActionPage = new AssertionActionPage(driver);
+        loginPage = new LoginPage(interactions);
+        actionsPage = new ActionsPage(interactions);
+        navigateToUrlActionPage = new NavigateToUrlActionPage(interactions);
+        assertionsPage = new AssertionsPage(interactions);
+        clickOnElementActionPage = new ClickOnElementActionPage(interactions);
+        fillInputActionPage = new FillInputActionPage(interactions);
+        manualActivityActionPage = new ManualActivityActionPage(interactions);
+        assertionActionPage = new AssertionActionPage(interactions);
     }
 
     @AfterEach

@@ -43,7 +43,7 @@ public class LoginData {
 
     @Override
     public String toString() {
-        return "Message{" +
+        return "LoginData{" +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';

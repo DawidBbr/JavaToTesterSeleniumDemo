@@ -2,21 +2,25 @@ package pages;
 
 import selectors.WebElementSelectorsPage;
 import enums.ActionType;
-import org.openqa.selenium.WebDriver;
-import utils.NavigateToUrlAndManualActivity;
-
-import static utils.Interactions.*;
+import utils.CreateBasicAction;
+import utils.Interactions;
 
 public class ManualActivityActionPage extends BasePage implements WebElementSelectorsPage {
 
-    public ManualActivityActionPage(WebDriver driver) {
+    public ManualActivityActionPage(Interactions driver) {
         super(driver);
     }
+
+    public CreateBasicAction.CreateBasicActionBuilder getDataManualActivityBuilder() {
+        CreateBasicAction.CreateBasicActionBuilder dataManualActivity = new CreateBasicAction.CreateBasicActionBuilder();
+        return dataManualActivity;
+    }
+
     public void inputValidDataOfActionNavigateToUrl() {
-        awaitUntilElementDisplayed(driver, actionNameFieldSelector);
-        NavigateToUrlAndManualActivity navigateToUrl = new NavigateToUrlAndManualActivity("Manual activity", ActionType.MANUAL_ACTIVITY);
-        sendKeys(driver, actionNameFieldSelector, navigateToUrl.getActionName());
-        click(driver, actionTypeFieldSelector);
-        click(driver, getSelectActionTypeFromDropDownSelector(ActionType.MANUAL_ACTIVITY));
+        CreateBasicAction manualActivity =
+                getDataManualActivityBuilder().actionName("Manual activity").actionType(ActionType.MANUAL_ACTIVITY).build();
+        driver.sendKeys(actionNameFieldSelector, manualActivity.getActionName());
+        driver.click(actionTypeFieldSelector);
+        driver.click(getSelectActionTypeFromDropDownSelector(manualActivity.getActionType()));
     }
 }

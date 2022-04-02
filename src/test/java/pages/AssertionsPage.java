@@ -1,21 +1,18 @@
 package pages;
 
 import selectors.WebElementSelectorsPage;
-import org.openqa.selenium.WebDriver;
-
-import static utils.Interactions.awaitUntilElementDisplayed;
-import static utils.Interactions.ifActionsExistAssertThem;
+import utils.Interactions;
 
 public class AssertionsPage  extends BasePage implements WebElementSelectorsPage {
 
 
-    public AssertionsPage(WebDriver driver) {
+    public AssertionsPage(Interactions driver) {
         super(driver);
     }
     public void assertIfAnyActionsExist() {
-        ifActionsExistAssertThem(driver, rowDataNamesSelector);
+        driver.ifActionsExistAssertThem(rowDataNamesSelector);
     }
     public void assertActionWasDeleted() {
-        awaitUntilElementDisplayed(driver, successfullyOfDeleteActionSelector);
+        driver.awaitUntilElementDisplayed(successfullyOfDeletedActionSelector);
     }
 }

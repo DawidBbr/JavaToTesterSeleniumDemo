@@ -1,22 +1,35 @@
 package pages;
 
-import selectors.WebElementSelectorsPage;
 import enums.ActionType;
-import org.openqa.selenium.WebDriver;
-import utils.NavigateToUrlAndManualActivity;
-
-import static utils.Interactions.*;
+import selectors.WebElementSelectorsPage;
+import utils.CreateBasicAction;
+import utils.Interactions;
 
 public class NavigateToUrlActionPage extends BasePage implements WebElementSelectorsPage {
 
-    public NavigateToUrlActionPage(WebDriver driver) {
+    ActionsPage actionsPage;
+
+    public NavigateToUrlActionPage(Interactions driver) {
         super(driver);
     }
+    public CreateBasicAction.CreateBasicActionBuilder getDataNavigateToUrlBuilder() {
+        CreateBasicAction.CreateBasicActionBuilder dataNavigateToUrl =
+                new CreateBasicAction.CreateBasicActionBuilder();
+        return dataNavigateToUrl;
+    }
+
     public void inputValidDataOfActionNavigateToUrl() {
-        awaitUntilElementDisplayed(driver, actionNameFieldSelector);
-        NavigateToUrlAndManualActivity navigateToUrl = new NavigateToUrlAndManualActivity("Navigate to Url", ActionType.NAVIGATE_TO_URL);
-        sendKeys(driver, actionNameFieldSelector, navigateToUrl.getActionName());
-        click(driver, actionTypeFieldSelector);
-        click(driver, getSelectActionTypeFromDropDownSelector(ActionType.NAVIGATE_TO_URL));
+        CreateBasicAction navigateToUrl =
+                getDataNavigateToUrlBuilder().actionName("Navigate To Url").actionType(ActionType.NAVIGATE_TO_URL).build();
+        driver.sendKeys(actionNameFieldSelector, navigateToUrl.getActionName());
+        driver.click(actionTypeFieldSelector);
+        driver.click(getSelectActionTypeFromDropDownSelector(navigateToUrl.getActionType()));
+    }
+    public void inputValidDataOfActionGoToUrl() {
+        CreateBasicAction navigateToUrl =
+                getDataNavigateToUrlBuilder().actionName("Go to URL").actionType(ActionType.NAVIGATE_TO_URL).build();
+        driver.sendKeys(actionNameFieldSelector, navigateToUrl.getActionName());
+        driver.click(actionTypeFieldSelector);
+        driver.click(getSelectActionTypeFromDropDownSelector(navigateToUrl.getActionType()));
     }
 }

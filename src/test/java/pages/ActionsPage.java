@@ -1,47 +1,48 @@
 package pages;
 
 import selectors.WebElementSelectorsPage;
-import org.openqa.selenium.WebDriver;
-
-import static utils.Interactions.*;
+import utils.Interactions;
 
 public class ActionsPage extends BasePage implements WebElementSelectorsPage {
 
-    public ActionsPage(WebDriver driver) {
+    public ActionsPage(Interactions driver) {
         super(driver);
     }
-    public void clickOnTopMenuActionsOfDrapla() {
-        awaitUntilElementDisplayed(driver, topMenuActionsSelector);
-        click(driver, topMenuActionsSelector);
-    }
     public void clickOnDeleteAllActionsIfAreDisplayed() {
-        awaitUntilElementDisplayed(driver, addNewActionsButtonSelector);
-        ifActionsExistCLickOnTheMainCheckBox(driver, rowDataNamesSelector, theMainCheckBoxForAllActionsSelector,
+        driver.awaitUntilElementDisplayed(addNewActionsButtonSelector);
+        driver.ifActionsExistCLickOnTheMainCheckBox(rowDataNamesSelector, theMainCheckBoxForAllActionsSelector,
                 deleteButtonInActions, getSelectVariantToDecideIfYouWantDeleteActions("Yes"));
     }
     public void clickOnAddNewActionsButton() {
-        awaitUntilElementDisplayed(driver, addNewActionsButtonSelector);
-        click(driver, addNewActionsButtonSelector);
+        driver.awaitUntilElementDisplayed(addNewActionsButtonSelector);
+        driver.click(addNewActionsButtonSelector);
     }
 
     public void clickOnNextActionStepButton() {
-        click(driver, nextActionStepButtonSelector);
+        driver.click(nextActionStepButtonSelector);
     }
     public void clickOnMainCheckBox() {
-        click(driver, theMainCheckBoxForAllActionsSelector);
-        awaitUntilElementDisplayed(driver, rowDataNamesSelector);
+        driver.click(theMainCheckBoxForAllActionsSelector);
     }
     public void clickOnButtonFinishCreateAction() {
-        click(driver, finishActionStepButtonSelector);
-        awaitUntilElementDisplayed(driver, rowDataNamesSelector);
+        driver.click(finishActionStepButtonSelector);
     }
+
     public  void clickOnDeleteAllActions() {
-        click(driver, deleteButtonInActions);
+        driver.awaitUntilElementToAppear(deleteButtonInActions);
+        driver.click(deleteButtonInActions);
+
     }
     public void clickInYesButtonToDeleteAllAction() {
-        click(driver, getSelectVariantToDecideIfYouWantDeleteActions("Yes"));
+        driver.click(getSelectVariantToDecideIfYouWantDeleteActions("Yes"));
+
     }
-    public void inputValueToAction(String keys) {
-        sendKeys(driver, fieldToInputValueOfActionSelector, keys);
+    public void fillValueInAction(String keys) {
+        driver.sendKeys(fieldToInputValueOfActionSelector, keys);
     }
+    public void assertActionWasCreated() {
+        driver.awaitUntilElementDisplayed(successfullyOfCreatedActionSelector);
+    }
+
+
 }

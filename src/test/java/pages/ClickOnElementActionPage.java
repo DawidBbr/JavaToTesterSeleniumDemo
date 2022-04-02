@@ -1,33 +1,37 @@
 package pages;
 
-import selectors.WebElementSelectorsFillInputAndClickOnElementPage;
-import selectors.WebElementSelectorsPage;
 import enums.ActionType;
 import enums.SelectorType;
-import org.openqa.selenium.WebDriver;
-import utils.ClickOnElement;
-
-import static utils.Interactions.*;
+import selectors.WebElementSelectorsFillInputAndClickOnElementPage;
+import selectors.WebElementSelectorsPage;
+import utils.CreateBasicAction;
+import utils.Interactions;
 
 public class ClickOnElementActionPage extends BasePage implements WebElementSelectorsPage, WebElementSelectorsFillInputAndClickOnElementPage {
 
-    public ClickOnElementActionPage(WebDriver driver) {
+    public ClickOnElementActionPage(Interactions driver) {
         super(driver);
     }
+    public CreateBasicAction.CreateBasicActionBuilder getDataClickOnElementBuilder() {
+        CreateBasicAction.CreateBasicActionBuilder dataClickOnElement = new CreateBasicAction.CreateBasicActionBuilder();
+        return dataClickOnElement;
+    }
+
     public void inputValidDataOfActionClickOnElement() {
-        awaitUntilElementDisplayed(driver, actionNameFieldSelector);
-        ClickOnElement clickOnElement = new ClickOnElement("Click on Element", ActionType.CLICK_ON_ELEMENT);
-        sendKeys(driver, actionNameFieldSelector, clickOnElement.getActionName());
-        click(driver, actionTypeFieldSelector);
-        click(driver, getSelectActionTypeFromDropDownSelector(ActionType.CLICK_ON_ELEMENT));
+        CreateBasicAction clickOnElement = getDataClickOnElementBuilder().actionName("Click on element").actionType(ActionType.CLICK_ON_ELEMENT).build();
+        driver.sendKeys(actionNameFieldSelector, clickOnElement.getActionName());
+        driver.click(actionTypeFieldSelector);
+        driver.click(getSelectActionTypeFromDropDownSelector(clickOnElement.getActionType()));
     }
+
     public void clickOnProvideWayToLocateSelectorFromWebsite() {
-        click(driver, provideWayToLocateSelector);
+        driver.click(provideWayToLocateSelector);
     }
+
     public void inputValidDataOfSelector() {
-        ClickOnElement clickOnElement = new ClickOnElement("some xpath value", SelectorType.XPATH);
-        sendKeys(driver, selectorValueFieldSelector, clickOnElement.getSelectorValue());
-        click(driver, selectorTypeFieldSelector);
-        click(driver, getSelectSelectorTypeFromDropDownSelector(SelectorType.XPATH));
+        CreateBasicAction clickOnElement = getDataClickOnElementBuilder().selectorValue("xpath").selectorType(SelectorType.XPATH).build();
+        driver.sendKeys(selectorValueFieldSelector, clickOnElement.getSelectorValue());
+        driver.click(selectorTypeFieldSelector);
+        driver.click(getSelectSelectorTypeFromDropDownSelector(clickOnElement.getSelectorType()));
     }
 }
