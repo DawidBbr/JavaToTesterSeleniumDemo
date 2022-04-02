@@ -10,15 +10,14 @@ public class HomePageTest extends BaseTest {
     @BeforeEach
     void compose() {
         loginPage.sendLoginDataToLogIn();
-        loginPage.clickOnSignInButton();
+        testCasePage = loginPage.clickOnSignInButton();
     }
-
 
     @Test
     public void shouldReturnSuccessOfCreatedActionNavigateToUrl() {
         actionsPage = testCasePage.goToActionsPage();
-        actionsPage.clickOnAddNewActionsButton();
-        navigateToUrlActionPage.inputValidDataOfActionNavigateToUrl();
+        actionTypesPage = actionsPage.clickOnAddNewActionsButton();
+        actionsPage = actionTypesPage.inputValidDataOfActionNavigateToUrl();
         actionsPage.clickOnNextActionStepButton();
         actionsPage.fillValueInAction("${URL}");
         actionsPage.clickOnNextActionStepButton();
@@ -29,12 +28,12 @@ public class HomePageTest extends BaseTest {
     @Test
     public void shouldReturnSuccessOfCreatedActionClickOnElement() {
         actionsPage = testCasePage.goToActionsPage();
-        actionsPage.clickOnAddNewActionsButton();
-        clickOnElementActionPage.inputValidDataOfActionClickOnElement();
-        actionsPage.clickOnNextActionStepButton();
-        clickOnElementActionPage.clickOnProvideWayToLocateSelectorFromWebsite();
-        actionsPage.clickOnNextActionStepButton();
-        clickOnElementActionPage.inputValidDataOfSelector();
+        actionTypesPage = actionsPage.clickOnAddNewActionsButton();
+        actionsPage = actionTypesPage.inputValidDataOfActionClickOnElement();
+        actionTypesPage = actionsPage.clickOnNextActionStepButton();
+        actionsPage = actionTypesPage.clickOnProvideWayToLocateSelectorFromWebsite();
+        actionTypesPage = actionsPage.clickOnNextActionStepButton();
+        actionsPage = actionTypesPage.inputValidDataOfSelectorClickOnElement();
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
         actionsPage.assertActionWasCreated();
@@ -43,12 +42,12 @@ public class HomePageTest extends BaseTest {
     @Test
     public void shouldReturnSuccessOfCreatedActionFillInput() {
         actionsPage = testCasePage.goToActionsPage();
-        actionsPage.clickOnAddNewActionsButton();
-        fillInputActionPage.inputValidDataOfActionFillInput();
-        actionsPage.clickOnNextActionStepButton();
-        fillInputActionPage.clickOnProvideWayToLocateSelectorFromWebsite();
-        actionsPage.clickOnNextActionStepButton();
-        fillInputActionPage.inputValidDataOfSelector();
+        actionTypesPage = actionsPage.clickOnAddNewActionsButton();
+        actionsPage = actionTypesPage.inputValidDataOfActionFillInput();
+        actionTypesPage = actionsPage.clickOnNextActionStepButton();
+        actionsPage = actionTypesPage.clickOnProvideWayToLocateSelectorFromWebsite();
+        actionTypesPage = actionsPage.clickOnNextActionStepButton();
+        actionsPage = actionTypesPage.inputValidDataOfSelectorFillInput();
         actionsPage.clickOnNextActionStepButton();
         actionsPage.fillValueInAction("${value}");
         actionsPage.clickOnNextActionStepButton();
@@ -59,8 +58,8 @@ public class HomePageTest extends BaseTest {
     @Test
     public void shouldReturnSuccessOfCreatedActionManualActivity() {
         actionsPage = testCasePage.goToActionsPage();
-        actionsPage.clickOnAddNewActionsButton();
-        manualActivityActionPage.inputValidDataOfActionNavigateToUrl();
+        actionTypesPage = actionsPage.clickOnAddNewActionsButton();
+        actionsPage = actionTypesPage.inputValidDataOfActionManualActivity();
         actionsPage.clickOnNextActionStepButton();
         actionsPage.fillValueInAction("Do something manually");
         actionsPage.clickOnNextActionStepButton();
@@ -71,14 +70,14 @@ public class HomePageTest extends BaseTest {
     @Test
     public void shouldReturnSuccessOfCreatedActionAssertionElementDisplayed() {
         actionsPage = testCasePage.goToActionsPage();
-        actionsPage.clickOnAddNewActionsButton();
-        assertionActionPage.inputValidDataOfActionAssertion();
-        actionsPage.clickOnNextActionStepButton();
-        assertionActionPage.clickOnAssertionTypeFromDropDown();
-        actionsPage.clickOnNextActionStepButton();
-        assertionActionPage.clickOnProvideWayToLocateSelectorFromWebsite();
-        actionsPage.clickOnNextActionStepButton();
-        assertionActionPage.inputValidDataOfSelector();
+        actionTypesPage = actionsPage.clickOnAddNewActionsButton();
+        actionsPage = actionTypesPage.inputValidDataOfActionAssertion();
+        actionTypesPage = actionsPage.clickOnNextActionStepButton();
+        actionsPage = actionTypesPage.clickOnAssertionTypeFromDropDown();
+        actionTypesPage = actionsPage.clickOnNextActionStepButton();
+        actionsPage = actionTypesPage.clickOnProvideWayToLocateSelectorFromWebsite();
+        actionTypesPage = actionsPage.clickOnNextActionStepButton();
+        actionsPage = actionTypesPage.inputValidDataOfSelectorAssertion();
         actionsPage.clickOnNextActionStepButton();
         actionsPage.clickOnButtonFinishCreateAction();
         actionsPage.assertActionWasCreated();
@@ -87,8 +86,8 @@ public class HomePageTest extends BaseTest {
     @Test
     public void shouldReturnSuccessOfDeletedAllExistingAction() {
         actionsPage = testCasePage.goToActionsPage();
-        actionsPage.clickOnAddNewActionsButton();
-        navigateToUrlActionPage.inputValidDataOfActionGoToUrl();
+        actionTypesPage = actionsPage.clickOnAddNewActionsButton();
+        actionsPage = actionTypesPage.inputValidDataOfActionGoToUrl();
         actionsPage.clickOnNextActionStepButton();
         actionsPage.fillValueInAction("${URL}");
         actionsPage.clickOnNextActionStepButton();
@@ -96,7 +95,7 @@ public class HomePageTest extends BaseTest {
         actionsPage.assertActionWasCreated();
         actionsPage.clickOnMainCheckBox();
         actionsPage.clickOnDeleteAllActions();
-        actionsPage.clickInYesButtonToDeleteAllAction();
-        assertionsPage.assertActionWasDeleted();
+        actionTypesPage = actionsPage.clickInYesButtonToDeleteAllAction();
+        actionTypesPage.assertActionWasDeleted();
     }
 }

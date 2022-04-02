@@ -1,6 +1,8 @@
 package selectors;
 
 import enums.ActionType;
+import enums.AssertionType;
+import enums.SelectorType;
 import org.openqa.selenium.By;
 
 public interface WebElementSelectorsPage {
@@ -19,9 +21,19 @@ public interface WebElementSelectorsPage {
     By nextActionStepButtonSelector = By.xpath("//*[contains(text(),'Next')]");
     By fieldToInputValueOfActionSelector = By.xpath("//*[@ng-trim='false']");
     By finishActionStepButtonSelector = By.xpath("//*[contains(text(),'Finish')]");
-    By deleteOneActionButtonSelector = By.xpath("//*[contains(@id,'table-delete-button')]");
     By successfullyOfDeletedActionSelector = By.xpath("//*[contains(text(),'Successfully deleted action')]");
     By successfullyOfCreatedActionSelector = By.xpath("//*[contains(text(),'Action created successfully')]");
+    By assertionTypeFieldSelector = By.xpath("//*[contains(text(),'Assertion type')]");
+    By provideWayToLocateSelector = By.xpath("//*[@class='provide-button box']");
+    By selectorTypeFieldSelector = By.xpath("//*[contains(text(),'Selector type')]");
+    By selectorValueFieldSelector = By.id("selector-value");
+
+    default By getAssertionTypeFromDropDownSelector(AssertionType assertionType) {
+        return (By.xpath("//*[contains(text(),'" + assertionType.getValue() + "')]"));
+    }
+    default By getSelectSelectorTypeFromDropDownSelector(SelectorType selectorType) {
+        return (By.xpath("//*[text()='" + selectorType.getValue() + "']"));
+    }
 
     default By getSelectActionTypeFromDropDownSelector(ActionType actionType) {
         return (By.xpath("//*[@aria-label='" + actionType.getValue() + "']"));

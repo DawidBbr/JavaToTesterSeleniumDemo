@@ -13,13 +13,14 @@ public class ActionsPage extends BasePage implements WebElementSelectorsPage {
         driver.ifActionsExistCLickOnTheMainCheckBox(rowDataNamesSelector, theMainCheckBoxForAllActionsSelector,
                 deleteButtonInActions, getSelectVariantToDecideIfYouWantDeleteActions("Yes"));
     }
-    public void clickOnAddNewActionsButton() {
-        driver.awaitUntilElementDisplayed(addNewActionsButtonSelector);
+    public ActionTypesPage clickOnAddNewActionsButton() {
         driver.click(addNewActionsButtonSelector);
+        return new ActionTypesPage(driver);
     }
 
-    public void clickOnNextActionStepButton() {
+    public ActionTypesPage clickOnNextActionStepButton() {
         driver.click(nextActionStepButtonSelector);
+        return new ActionTypesPage(driver);
     }
     public void clickOnMainCheckBox() {
         driver.click(theMainCheckBoxForAllActionsSelector);
@@ -33,8 +34,9 @@ public class ActionsPage extends BasePage implements WebElementSelectorsPage {
         driver.click(deleteButtonInActions);
 
     }
-    public void clickInYesButtonToDeleteAllAction() {
+    public ActionTypesPage clickInYesButtonToDeleteAllAction() {
         driver.click(getSelectVariantToDecideIfYouWantDeleteActions("Yes"));
+        return new ActionTypesPage(driver);
 
     }
     public void fillValueInAction(String keys) {

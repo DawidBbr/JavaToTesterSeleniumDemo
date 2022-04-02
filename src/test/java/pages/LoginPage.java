@@ -37,8 +37,9 @@ public class LoginPage extends BasePage implements WebElementSelectorsPage {
     public void assertIncorrectPasswordAndEmailRegexAppear() {
         driver.awaitUntilElementDisplayed(fieldCheckEmailAndPasswordSelector);
     }
-    public void clickOnSignInButton() {
+    public TestCasePage clickOnSignInButton() {
         driver.click(signInButtonInLoginPageDraplaSelector);
+        return new TestCasePage(driver);
     }
 }
 

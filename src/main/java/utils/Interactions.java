@@ -21,7 +21,7 @@ public class Interactions {
         Awaitility.await().atMost(TIMEOUT, TimeUnit.SECONDS).ignoreExceptions().until(() -> driver.findElement(selector).isDisplayed());
     }
     public void awaitUntilElementToAppear(By selector) {
-        Awaitility.await().atMost(10, TimeUnit.SECONDS).pollInterval(2,TimeUnit.SECONDS).ignoreExceptions().until(() -> driver.findElement(selector).isDisplayed());
+        Awaitility.await().atMost(10, TimeUnit.SECONDS).pollInterval(5,TimeUnit.SECONDS).ignoreExceptions().until(() -> driver.findElement(selector).isDisplayed());
     }
 
 

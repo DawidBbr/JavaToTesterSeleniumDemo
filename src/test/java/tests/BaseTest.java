@@ -15,12 +15,7 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected TestCasePage testCasePage;
     protected ActionsPage actionsPage;
-    protected AssertionsPage assertionsPage;
-    protected NavigateToUrlActionPage navigateToUrlActionPage;
-    protected ClickOnElementActionPage clickOnElementActionPage;
-    protected FillInputActionPage fillInputActionPage;
-    protected ManualActivityActionPage manualActivityActionPage;
-    protected AssertionActionPage assertionActionPage;
+    protected ActionTypesPage actionTypesPage;
 
     @BeforeEach
     public void setupTest() {
@@ -31,12 +26,6 @@ public class BaseTest {
         driver.manage().window().maximize();
         loginPage = new LoginPage(interactions);
         actionsPage = new ActionsPage(interactions);
-        navigateToUrlActionPage = new NavigateToUrlActionPage(interactions);
-        assertionsPage = new AssertionsPage(interactions);
-        clickOnElementActionPage = new ClickOnElementActionPage(interactions);
-        fillInputActionPage = new FillInputActionPage(interactions);
-        manualActivityActionPage = new ManualActivityActionPage(interactions);
-        assertionActionPage = new AssertionActionPage(interactions);
     }
 
     @AfterEach
